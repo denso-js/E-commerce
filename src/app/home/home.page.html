@@ -1,20 +1,51 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>E-commerce</ion-title> 
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content>
+  
+  <div class="presentation">
+    <img src="https://thumbs.dreamstime.com/b/banner-web-ecommerce-sobre-fondo-azul-varios-iconos-de-compras-concepto-compra-en-l%C3%ADnea-246439257.jpg" alt="Bienvenido a nuestra tienda" class="banner" />
+    <h1>Bienvenido a mi E-commerce</h1>
+    <p>Descubre los mejores productos al mejor precio.</p>
   </div>
+
+ 
+  <ion-segment [(ngModel)]="selectedCategory" (ionChange)="filterByCategory(selectedCategory)">
+    <ion-segment-button *ngFor="let category of categories" [value]="category">
+      {{ category }}
+    </ion-segment-button>
+  </ion-segment>
+
+ 
+  <ion-list>
+    <ion-item *ngFor="let product of products">
+      <ion-thumbnail slot="start">
+        <img [src]="product.image" alt="{{ product.title }}">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ product.title }}</h2>
+        <p>{{ product.price | currency }}</p>
+      </ion-label>
+      <ion-button (click)="addToCart(product)">Agregar</ion-button>
+    </ion-item>
+  </ion-list>
+
+ 
+  <ion-button expand="full" routerLink="/cart">Proceder al Pago</ion-button>
 </ion-content>
+
+<style>
+  .presentation {
+    text-align: center;
+    padding: 20px;
+  }
+  .banner {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+</style>

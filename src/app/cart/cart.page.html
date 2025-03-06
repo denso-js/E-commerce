@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Carrito</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of cart">
+      <ion-label>{{ item.title }}</ion-label>
+
+ <ion-item *ngFor="let item of getCartItems(); let i = index" [ngClass]="{ 'fade-out': item.removed }">
+  <ion-label>{{ item.name }}</ion-label>
+  <ion-label>{{ item.price | currency }}</ion-label>
+
+  
+  
+
+
+</ion-item>
+<ion-button  (click)="removeFromCart(item)">Eliminar</ion-button>
+    </ion-item>
+
+  </ion-list>
+
+  
+
+
+  <ion-button  (click)="clearCart()">vaciar carrito</ion-button>
+  @if(total>0){
+  <ion-button routerLink="/checkout">Proceder al Pago</ion-button>}
+  
+</ion-content>
